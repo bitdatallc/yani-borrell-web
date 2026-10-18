@@ -45,12 +45,8 @@ if ($LASTEXITCODE -ne 0) {
     if ($LASTEXITCODE -ne 0) { throw 'no se pudo poner la politica de la identidad SES' }
 }
 
-# Conectar la URL al sitio
-$cfgPath = Join-Path $Root 'tools/config.json'
-$cfg = Get-Content $cfgPath -Raw | ConvertFrom-Json
-$cfg.contactFormUrl = $url
-$cfg | ConvertTo-Json | Set-Content -Path $cfgPath -Encoding utf8NoBOM
-node (Join-Path $Root 'tools/postprocess.mjs')
-
 Write-Host "Function URL: $url"
-Write-Host 'Siguiente: pwsh ./deploy.ps1 para publicar el sitio con el formulario conectado.'
+$main = Get-Content (Join-Path $Root 'src/main.js') -Raw
+if ($main -notmatch [regex]::Escape($url)) {
+    Write-Warning "La URL no coincide con CONTACT_ENDPOINT en src/main.js: actualizala y vuelve a desplegar el sitio (pwsh ./deploy.ps1)."
+}

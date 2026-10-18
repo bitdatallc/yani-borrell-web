@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Términos y condiciones · Yani Borrell</title>
+  <meta name="theme-color" content="#FAF6EF" />
+  <link rel="icon" href="/img/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..800;1,400..700&family=Poppins:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet" />
+</head>
+<body class="page-terms">
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="header__logo" aria-label="Yani Borrell - inicio">
+        <img src="/img/logo.png" alt="YB Consultancy" width="56" height="51" />
+      </a>
+      <div class="header__actions">
+        <div class="lang" role="group" aria-label="Idioma / Language">
+          <button type="button" data-lang="es" aria-pressed="true">ES</button>
+          <span class="lang__pill" aria-hidden="true"></span>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn btn--gold btn--sm js-book" href="#" target="_blank" rel="noopener" data-i18n="nav.book">Agendar cita</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="terms">
+    <div class="container terms__inner">
+      <p class="eyebrow" data-i18n="footer.legal">Legal</p>
+      <h1 class="terms__title section__title">Términos y condiciones</h1>
+      <p class="terms__intro"></p>
+      <ol class="terms__list"></ol>
+      <p class="terms__outro"></p>
+      <a class="btn btn--ghost terms__back" href="/">
+        <svg viewBox="0 0 24 24" aria-hidden="true" style="transform:rotate(180deg)"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        <span>Volver al inicio</span>
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__bottom">
+      <span>© <span class="js-year"></span> YB Consultancy · Yani Borrell. <span data-i18n="footer.rights"></span></span>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/terms.js"></script>
+</body>
+</html>

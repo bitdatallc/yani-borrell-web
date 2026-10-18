@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="meta.title">Yani Borrell · Asesora y experta en extranjería</title>
+  <meta name="description" data-i18n-attr="content:meta.description" content="" />
+  <meta name="theme-color" content="#FAF6EF" />
+  <link rel="icon" href="/img/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..800;1,400..700&family=Poppins:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Pantalla de carga: monograma + anillo dorado que se dibuja -->
+  <div class="loader" aria-hidden="true">
+    <div class="loader__mark">
+      <svg class="loader__ring" viewBox="0 0 200 200"><circle cx="100" cy="100" r="92" /></svg>
+      <img src="/img/logo.png" alt="" />
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a href="#inicio" class="header__logo" aria-label="Yani Borrell - inicio">
+        <img src="/img/logo.png" alt="YB Consultancy" width="56" height="51" />
+      </a>
+      <nav class="nav" aria-label="Principal">
+        <a href="#servicios" data-i18n="nav.services">Servicios</a>
+        <a href="#proceso" data-i18n="nav.process">Cómo trabajo</a>
+        <a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a>
+        <a href="#contacto" data-i18n="nav.contact">Contacto</a>
+      </nav>
+      <div class="header__actions">
+        <div class="lang" role="group" aria-label="Idioma / Language">
+          <button type="button" data-lang="es" aria-pressed="true">ES</button>
+          <span class="lang__pill" aria-hidden="true"></span>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn btn--gold btn--sm magnetic js-book" href="#" target="_blank" rel="noopener" data-i18n="nav.book">Agendar cita</a>
+        <button class="burger" type="button" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span class="sr-only" data-i18n="nav.menu">Menú</span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#servicios" data-i18n="nav.services">Servicios</a>
+      <a href="#proceso" data-i18n="nav.process">Cómo trabajo</a>
+      <a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a>
+      <a href="#contacto" data-i18n="nav.contact">Contacto</a>
+      <a class="btn btn--gold js-book" href="#" target="_blank" rel="noopener" data-i18n="nav.book">Agendar cita</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+      <div class="hero__glow hero__glow--a" aria-hidden="true"></div>
+      <div class="hero__glow hero__glow--b" aria-hidden="true"></div>
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow hero__eyebrow" data-i18n="hero.eyebrow">Asesora y experta en extranjería</p>
+          <h1 class="hero__title js-split" data-i18n-html="hero.title">Soluciones legales para tu <em>proceso migratorio</em></h1>
+          <p class="script hero__script" data-i18n="hero.script">Tu asesora aliada</p>
+          <p class="hero__lead" data-i18n="hero.lead"></p>
+          <div class="hero__ctas">
+            <a class="btn btn--gold magnetic js-book" href="#" target="_blank" rel="noopener">
+              <span data-i18n="hero.cta">Agendar consulta</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </a>
+            <a class="btn btn--ghost magnetic" href="https://wa.me/34686520445?text=Hola%2C%20necesito%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="icon-fill"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+              <span data-i18n="hero.whatsapp">Escríbeme por WhatsApp</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero__visual">
+          <svg class="hero__orbit" viewBox="0 0 600 600" aria-hidden="true">
+            <defs>
+              <linearGradient id="goldStroke" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#E9D3A1" /><stop offset=".5" stop-color="#C5A059" /><stop offset="1" stop-color="#886140" />
+              </linearGradient>
+            </defs>
+            <circle class="orbit-ring" cx="300" cy="300" r="270" />
+            <path id="orbitPath" class="orbit-dash" d="M300,40 A260,260 0 1,1 299.9,40" />
+            <g class="orbit-plane">
+              <path d="M-12,-2 L6,-2 L12,0 L6,2 L-12,2 Z M-2,-2 L-8,-12 L-4,-12 L4,-2 Z M-2,2 L-8,12 L-4,12 L4,2 Z M-12,-1 L-15,-6 L-13,-6 L-9,-1 Z M-12,1 L-15,6 L-13,6 L-9,1 Z" />
+            </g>
+          </svg>
+          <div class="hero__arch">
+            <img src="/img/hero-banner.jpeg" alt="Yani Borrell, asesora de extranjería" class="hero__img" />
+          </div>
+          <div class="chip chip--1"><span class="chip__dot"></span><span data-i18n="hero.chip1">Extranjería</span></div>
+          <div class="chip chip--2"><span class="chip__dot"></span><span data-i18n="hero.chip2">Asesoría personalizada</span></div>
+          <div class="chip chip--3"><span class="chip__dot"></span><span data-i18n="hero.chip3">Acompañamiento integral</span></div>
+        </div>
+      </div>
+      <a href="#pilares" class="hero__scroll" aria-hidden="true" tabindex="-1">
+        <span data-i18n="hero.scroll">Desliza</span><i></i>
+      </a>
+    </section>
+
+    <!-- MARQUESINA -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span data-i18n="marquee"></span><span data-i18n="marquee"></span><span data-i18n="marquee"></span><span data-i18n="marquee"></span>
+      </div>
+    </div>
+
+    <!-- PILARES -->
+    <section class="section pillars" id="pilares">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow" data-i18n="pillars.kicker">Precision in global mobility</p>
+          <h2 class="section__title js-split" data-i18n-html="pillars.title"></h2>
+        </header>
+        <div class="pillars__grid">
+          <article class="pillar">
+            <svg class="pillar__icon draw" viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="5" width="28" height="38" rx="3"/><circle cx="24" cy="21" r="8"/><path d="M16 21h16M24 13c3 3 3 13 0 16M24 13c-3 3-3 13 0 16M17 35h14"/></svg>
+            <h3 data-i18n="pillars.1.title"></h3><p data-i18n="pillars.1.text"></p>
+          </article>
+          <article class="pillar">
+            <svg class="pillar__icon draw" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6v34M14 42h20M10 12h28M24 9l0 3"/><path d="M10 12 4 26h12L10 12ZM38 12l-6 14h12l-6-14Z"/><path d="M4 26c0 3 2.7 5 6 5s6-2 6-5M32 26c0 3 2.7 5 6 5s6-2 6-5"/></svg>
+            <h3 data-i18n="pillars.2.title"></h3><p data-i18n="pillars.2.text"></p>
+          </article>
+          <article class="pillar">
+            <svg class="pillar__icon draw" viewBox="0 0 48 48" aria-hidden="true"><path d="M28 5H12a3 3 0 0 0-3 3v32a3 3 0 0 0 3 3h12"/><path d="M28 5l9 9v8M28 5v9h9"/><path d="M15 20h14M15 26h10M15 32h6"/><circle cx="34" cy="35" r="8"/><path d="m30.5 35 2.5 2.5 4.5-5"/></svg>
+            <h3 data-i18n="pillars.3.title"></h3><p data-i18n="pillars.3.text"></p>
+          </article>
+          <article class="pillar">
+            <svg class="pillar__icon draw" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="14" r="6"/><circle cx="11" cy="19" r="4.5"/><circle cx="37" cy="19" r="4.5"/><path d="M13 40c0-7 5-12 11-12s11 5 11 12M3 36c0-5 3.5-9 8-9 1.6 0 3 .4 4.2 1.2M45 36c0-5-3.5-9-8-9-1.6 0-3 .4-4.2 1.2"/></svg>
+            <h3 data-i18n="pillars.4.title"></h3><p data-i18n="pillars.4.text"></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section class="section services" id="servicios">
+      <div class="container">
+        <header class="section__head section__head--split reveal">
+          <div>
+            <p class="eyebrow" data-i18n="services.kicker">Servicios</p>
+            <h2 class="section__title js-split" data-i18n-html="services.title"></h2>
+          </div>
+          <p class="section__lead" data-i18n="services.lead"></p>
+        </header>
+        <div class="services__grid">
+          <!-- data-svc => claves svc.<id>.title / .1 / .2 / .3 y la imagen svc-<id>.webp -->
+          <article class="svc" data-svc="asesoria"></article>
+          <article class="svc" data-svc="residencias"></article>
+          <article class="svc" data-svc="nacionalidad"></article>
+          <article class="svc" data-svc="homologacion"></article>
+          <article class="svc" data-svc="traducciones"></article>
+          <article class="svc" data-svc="documentos"></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESO -->
+    <section class="process" id="proceso">
+      <div class="process__pin">
+        <div class="container">
+          <header class="section__head reveal">
+            <p class="eyebrow" data-i18n="process.kicker">Cómo trabajo</p>
+            <h2 class="section__title js-split" data-i18n-html="process.title"></h2>
+          </header>
+          <div class="process__track">
+            <div class="process__line"><span class="process__fill"></span></div>
+            <ol class="process__steps">
+              <li class="step"><span class="step__num">01</span><h3 data-i18n="process.1.title"></h3><p data-i18n="process.1.text"></p></li>
+              <li class="step"><span class="step__num">02</span><h3 data-i18n="process.2.title"></h3><p data-i18n="process.2.text"></p></li>
+              <li class="step"><span class="step__num">03</span><h3 data-i18n="process.3.title"></h3><p data-i18n="process.3.text"></p></li>
+              <li class="step"><span class="step__num">04</span><h3 data-i18n="process.4.title"></h3><p data-i18n="process.4.text"></p></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section class="section about" id="sobre-mi">
+      <div class="container about__grid">
+        <figure class="about__media">
+          <div class="about__frame"><img src="/img/about.jpeg" alt="Yani Borrell" class="about__img" loading="lazy" /></div>
+          <img src="/img/logo.png" alt="" class="about__seal" aria-hidden="true" />
+        </figure>
+        <div class="about__copy">
+          <p class="eyebrow reveal" data-i18n="about.kicker">Conoce a tu asesora</p>
+          <h2 class="section__title js-split" data-i18n-html="about.title"></h2>
+          <p class="reveal" data-i18n="about.p1"></p>
+          <p class="reveal" data-i18n="about.p2"></p>
+          <p class="reveal" data-i18n="about.p3"></p>
+
+          <div class="journey">
+            <p class="journey__label" data-i18n="about.journey">Mi camino</p>
+            <svg class="journey__svg" viewBox="0 0 600 120" aria-hidden="true">
+              <path id="journeyPath" class="journey__path" d="M30,80 C120,10 180,10 220,60 S340,110 380,60 S500,10 570,70" />
+              <path class="journey__path-bg" d="M30,80 C120,10 180,10 220,60 S340,110 380,60 S500,10 570,70" />
+              <g class="journey__plane"><path d="M-12,-2 L6,-2 L12,0 L6,2 L-12,2 Z M-2,-2 L-8,-12 L-4,-12 L4,-2 Z M-2,2 L-8,12 L-4,12 L4,2 Z" /></g>
+            </svg>
+            <ol class="journey__stops">
+              <li style="--x:5%"><i></i><span data-i18n="about.c1">Cuba</span></li>
+              <li style="--x:36.6%"><i></i><span data-i18n="about.c2">Ecuador</span></li>
+              <li style="--x:63.3%"><i></i><span data-i18n="about.c3">Estados Unidos</span></li>
+              <li style="--x:95%"><i></i><span data-i18n="about.c4">España</span></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FILOSOFÍA + VERSÍCULO -->
+    <section class="faith">
+      <div class="container faith__grid">
+        <div class="faith__values">
+          <h2 class="faith__title" data-i18n="values.title">Mi filosofía de vida</h2>
+          <ul>
+            <li data-i18n="values.1"></li><li data-i18n="values.2"></li><li data-i18n="values.3"></li>
+            <li data-i18n="values.4"></li><li data-i18n="values.5"></li>
+          </ul>
+        </div>
+        <blockquote class="verse">
+          <p class="verse__text js-words" data-i18n="verse.text"></p>
+          <cite data-i18n="verse.ref">Jeremías 29:11</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="container cta__inner reveal">
+        <h2 class="cta__title" data-i18n-html="cta.title"></h2>
+        <p data-i18n="cta.text"></p>
+        <a class="btn btn--dark btn--lg magnetic js-book" href="#" target="_blank" rel="noopener">
+          <span data-i18n="cta.button">Reservar consulta inicial</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="section contact" id="contacto">
+      <div class="container contact__grid">
+        <div class="contact__info">
+          <p class="eyebrow reveal" data-i18n="contact.kicker">Contacto</p>
+          <h2 class="section__title js-split" data-i18n-html="contact.title"></h2>
+          <p class="reveal" data-i18n="contact.lead"></p>
+          <p class="contact__or reveal" data-i18n="contact.or">O si lo prefieres</p>
+          <ul class="contact__links reveal">
+            <li><a href="tel:+34686520445"><span class="contact__ico">Tel</span><span><small data-i18n="contact.phone">Teléfono</small>+34 686 520 445</span></a></li>
+            <li><a href="https://wa.me/34686520445?text=Hola%2C%20necesito%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener"><span class="contact__ico">WA</span><span><small data-i18n="contact.waES">WhatsApp España</small>+34 686 520 445</span></a></li>
+            <li><a href="https://wa.me/17862378842?text=Hola%2C%20necesito%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener"><span class="contact__ico">WA</span><span><small data-i18n="contact.waUS">WhatsApp EE. UU.</small>+1 786 237 8842</span></a></li>
+            <li><a href="mailto:info@yani-borrell.com"><span class="contact__ico">@</span><span><small data-i18n="contact.email">Email</small>info@yani-borrell.com</span></a></li>
+          </ul>
+          <p class="contact__or reveal" data-i18n="contact.follow">Sígueme</p>
+          <ul class="social reveal">
+            <li><a href="https://www.instagram.com/yani_borrell" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" class="icon-fill"/></svg></a></li>
+            <li><a href="https://www.facebook.com/share/1JAjX3DapF/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M15 3.5h-2.2A3.8 3.8 0 0 0 9 7.3V10H6.5v3.5H9V21h3.5v-7.5h2.7l.5-3.5h-3.2V7.6c0-.6.4-1 1-1H15Z"/></svg></a></li>
+            <li><a href="https://www.tiktok.com/@yani_borrell" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5M14 3c.5 2.8 2.4 4.6 5 5"/></svg></a></li>
+          </ul>
+        </div>
+
+        <form class="form reveal" novalidate>
+          <div class="field">
+            <input id="f-name" name="name" type="text" autocomplete="name" placeholder=" " required />
+            <label for="f-name" data-i18n="contact.name">Nombre</label>
+          </div>
+          <div class="field">
+            <input id="f-email" name="email" type="email" autocomplete="email" placeholder=" " required />
+            <label for="f-email" data-i18n="contact.email">Email</label>
+          </div>
+          <div class="field">
+            <input id="f-subject" name="subject" type="text" placeholder=" " required />
+            <label for="f-subject" data-i18n="contact.subject">Asunto</label>
+          </div>
+          <div class="field">
+            <textarea id="f-message" name="message" rows="5" placeholder=" " maxlength="5000"></textarea>
+            <label for="f-message" data-i18n="contact.message">Mensaje (opcional)</label>
+          </div>
+          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <button class="btn btn--gold btn--block" type="submit"><span data-i18n="contact.send">Enviar mensaje</span></button>
+          <p class="form__status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <img src="/img/logo.png" alt="YB Consultancy" width="96" />
+        <p data-i18n="footer.tagline"></p>
+      </div>
+      <div>
+        <h4 data-i18n="footer.nav">Navegación</h4>
+        <a href="#servicios" data-i18n="nav.services"></a>
+        <a href="#proceso" data-i18n="nav.process"></a>
+        <a href="#sobre-mi" data-i18n="nav.about"></a>
+        <a href="#contacto" data-i18n="nav.contact"></a>
+      </div>
+      <div>
+        <h4 data-i18n="nav.contact">Contacto</h4>
+        <a href="mailto:info@yani-borrell.com">info@yani-borrell.com</a>
+        <a href="tel:+34686520445">+34 686 520 445</a>
+        <a href="https://wa.me/34686520445" target="_blank" rel="noopener">WhatsApp +34 686 520 445</a>
+        <a href="https://wa.me/17862378842" target="_blank" rel="noopener">WhatsApp +1 786 237 8842</a>
+        <a class="js-book" href="#" target="_blank" rel="noopener" data-i18n="nav.book"></a>
+      </div>
+      <div>
+        <h4 data-i18n="footer.legal">Legal</h4>
+        <a href="/terms-and-conditions/" data-i18n="footer.terms"></a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span>© <span class="js-year"></span> YB Consultancy · Yani Borrell. <span data-i18n="footer.rights"></span></span>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
