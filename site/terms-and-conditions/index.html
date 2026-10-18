@@ -511,21 +511,89 @@ var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof H
 //# sourceURL=/wp-includes/js/wp-emoji-loader.min.js
 </script>
 	<script id="static-contact-form">
-document.addEventListener('submit', function (e) {
-  var f = e.target;
-  if (!f.classList || !f.classList.contains('wpcf7-form')) return;
-  e.preventDefault();
-  e.stopImmediatePropagation();
-  var v = function (n) { var el = f.querySelector('[name="' + n + '"]'); return el ? el.value.trim() : ''; };
-  var out = f.querySelector('.wpcf7-response-output');
-  if (!v('your-name') || !v('your-email') || !v('your-subject')) {
-    if (out) { out.textContent = 'Please fill out all required fields.'; out.removeAttribute('aria-hidden'); out.style.display = 'block'; }
-    return;
+(function () {
+  var ENDPOINT = "PENDIENTE_FUNCTION_URL";
+  var loadedAt = Date.now(); // la Lambda descarta envíos a <3s de cargar (anti-bot)
+  var MSG = {
+    sent: 'Thank you for your message. It has been sent.',
+    failed: 'There was an error trying to send your message. Please try again later.',
+    invalid: 'One or more fields have an error. Please check and try again.',
+    required: 'Please fill out this field.',
+    email: 'Please enter an email address.'
+  };
+  var REQUIRED = ['your-name', 'your-email', 'your-subject'];
+
+  document.querySelectorAll('form.wpcf7-form').forEach(function (f) {
+    // Honeypot: campo invisible que un humano nunca rellena
+    var hp = document.createElement('input');
+    hp.type = 'text'; hp.name = 'website'; hp.tabIndex = -1; hp.autocomplete = 'off';
+    hp.setAttribute('aria-hidden', 'true');
+    hp.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0';
+    f.appendChild(hp);
+  });
+
+  function setState(f, state, text) {
+    f.classList.remove('init', 'submitting', 'sent', 'failed', 'invalid');
+    f.classList.add(state);
+    f.setAttribute('data-status', state);
+    var out = f.querySelector('.wpcf7-response-output');
+    if (out) { out.textContent = text || ''; out.setAttribute('aria-hidden', text ? 'false' : 'true'); }
   }
-  var body = 'Nombre: ' + v('your-name') + '\nEmail: ' + v('your-email') + '\n\n' + v('your-message');
-  window.location.href = 'mailto:info@yani-borrell.com?subject=' + encodeURIComponent(v('your-subject')) + '&body=' + encodeURIComponent(body);
-  if (out) { out.textContent = 'Se abrirá tu aplicación de correo para enviar el mensaje.'; out.removeAttribute('aria-hidden'); out.style.display = 'block'; }
-}, true);
+
+  function clearTips(f) {
+    f.querySelectorAll('.wpcf7-not-valid-tip').forEach(function (t) { t.remove(); });
+    f.querySelectorAll('.wpcf7-not-valid').forEach(function (el) {
+      el.classList.remove('wpcf7-not-valid'); el.setAttribute('aria-invalid', 'false');
+    });
+  }
+
+  function markInvalid(el, text) {
+    el.classList.add('wpcf7-not-valid'); el.setAttribute('aria-invalid', 'true');
+    var tip = document.createElement('span');
+    tip.className = 'wpcf7-not-valid-tip'; tip.setAttribute('aria-hidden', 'true'); tip.textContent = text;
+    el.parentNode.appendChild(tip);
+  }
+
+  document.addEventListener('submit', function (e) {
+    var f = e.target;
+    if (!f.classList || !f.classList.contains('wpcf7-form')) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    if (f.classList.contains('submitting')) return;
+
+    var field = function (n) { return f.querySelector('[name="' + n + '"]'); };
+    var val = function (n) { var el = field(n); return el ? el.value.trim() : ''; };
+
+    clearTips(f);
+    var ok = true;
+    REQUIRED.forEach(function (n) { if (!val(n)) { markInvalid(field(n), MSG.required); ok = false; } });
+    if (val('your-email') && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val('your-email'))) {
+      markInvalid(field('your-email'), MSG.email); ok = false;
+    }
+    if (!ok) { setState(f, 'invalid', MSG.invalid); return; }
+
+    var btn = f.querySelector('.wpcf7-submit');
+    if (btn) btn.disabled = true;
+    setState(f, 'submitting', '');
+
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: val('your-name'), email: val('your-email'), subject: val('your-subject'),
+        message: val('your-message'), website: val('website'), loadedAt: loadedAt
+      })
+    }).then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      f.reset();
+      setState(f, 'sent', MSG.sent);
+    }).catch(function () {
+      setState(f, 'failed', MSG.failed);
+    }).then(function () {
+      if (btn) btn.disabled = false;
+    });
+  }, true);
+})();
 </script>
 </body>
 </html>

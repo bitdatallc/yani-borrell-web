@@ -1,0 +1,153 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Formulario de contacto de yani-borrell.com - Lambda Function URL + SES (mismo patron que rubrica-contact-form)
+
+# Se despliega en la cuenta de bitdatallc (351561095678, eu-west-1): SES ya tiene production
+# access y bitdatallc.com verificado, asi que la Lambda envia por IAM role sin credenciales.
+# Despliegue: pwsh ./contact-form/deploy.ps1
+
+Parameters:
+  ToEmail:
+    Type: String
+    Default: info@yani-borrell.com
+  FromEmail:
+    Type: String
+    Default: notificaciones@bitdatallc.com
+  SesIdentity:
+    Type: String
+    Default: bitdatallc.com
+  AllowedOrigins:
+    Type: CommaDelimitedList
+    Description: Origenes permitidos por CORS (dominio final + previsualizacion de Amplify)
+    Default: https://yani-borrell.com,https://www.yani-borrell.com,http://localhost:8765
+
+Resources:
+  ExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: yani-borrell-contact-form-role
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal: { Service: lambda.amazonaws.com }
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        - PolicyName: ses-send-only
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: [ses:SendEmail, ses:SendRawEmail]
+                Resource: !Sub arn:aws:ses:${AWS::Region}:${AWS::AccountId}:identity/${SesIdentity}
+
+  LogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/lambda/yani-borrell-contact-form
+      RetentionInDays: 30
+
+  Function:
+    Type: AWS::Lambda::Function
+    DependsOn: LogGroup
+    Properties:
+      FunctionName: yani-borrell-contact-form
+      Description: Formulario de contacto de yani-borrell.com - envia por SES
+      Runtime: nodejs22.x
+      Handler: index.handler
+      Role: !GetAtt ExecutionRole.Arn
+      Timeout: 10
+      MemorySize: 128
+      ReservedConcurrentExecutions: 5
+      Environment:
+        Variables:
+          SES_REGION: !Ref AWS::Region
+          CONTACT_TO_EMAIL: !Ref ToEmail
+          CONTACT_FROM_EMAIL: !Ref FromEmail
+      Code:
+        ZipFile: |
+          'use strict';
+          // Codigo inline: el runtime nodejs22.x ya incluye @aws-sdk/client-sesv2.
+          // CORS lo pone la Function URL, no este codigo (duplicarlo rompe el navegador).
+          const { SESv2Client, SendEmailCommand } = require('@aws-sdk/client-sesv2');
+          const ses = new SESv2Client({ region: process.env.SES_REGION });
+
+          const respond = (statusCode, body) => ({
+            statusCode, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
+          });
+          const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+          exports.handler = async (event) => {
+            if (event.requestContext?.http?.method === 'OPTIONS') return respond(204, {});
+            let p;
+            try { p = JSON.parse(event.isBase64Encoded ? Buffer.from(event.body || '', 'base64').toString() : (event.body || '{}')); }
+            catch { return respond(400, { error: 'invalid_json' }); }
+
+            const name = String(p.name || '').trim().slice(0, 200);
+            const email = String(p.email || '').trim().slice(0, 200);
+            const subject = String(p.subject || '').trim().slice(0, 200);
+            const message = String(p.message || '').trim();
+
+            // Anti-bot: honeypot relleno o envio a menos de 3s de cargar la pagina -> OK falso
+            if (p.website) return respond(200, { ok: true });
+            if (typeof p.loadedAt === 'number' && Date.now() - p.loadedAt < 3000) return respond(200, { ok: true });
+
+            if (!name || !email || !subject) return respond(400, { error: 'missing_fields' });
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return respond(400, { error: 'invalid_email' });
+            if (message.length > 5000) return respond(400, { error: 'message_too_long' });
+
+            try {
+              await ses.send(new SendEmailCommand({
+                FromEmailAddress: `Web yani-borrell.com <${process.env.CONTACT_FROM_EMAIL}>`,
+                Destination: { ToAddresses: [process.env.CONTACT_TO_EMAIL] },
+                ReplyToAddresses: [email],
+                Content: { Simple: {
+                  Subject: { Data: `[Web] ${subject} - ${name}`.replace(/[\r\n]+/g, ' ') },
+                  Body: {
+                    Text: { Data: `Nombre: ${name}\nEmail: ${email}\nAsunto: ${subject}\n\n${message}` },
+                    Html: { Data: `<p><strong>Nombre:</strong> ${esc(name)}</p><p><strong>Email:</strong> ${esc(email)}</p><p><strong>Asunto:</strong> ${esc(subject)}</p><p>${esc(message).replace(/\n/g, '<br>')}</p>` },
+                  },
+                } },
+              }));
+            } catch (err) {
+              console.error(JSON.stringify({ level: 'error', message: 'contact_form_send_failed', err: err.message }));
+              return respond(502, { error: 'send_failed' });
+            }
+            return respond(200, { ok: true });
+          };
+
+  FunctionUrl:
+    Type: AWS::Lambda::Url
+    Properties:
+      TargetFunctionArn: !Ref Function
+      AuthType: NONE
+      Cors:
+        AllowOrigins: !Ref AllowedOrigins
+        AllowMethods: [POST]
+        AllowHeaders: [content-type]
+        MaxAge: 86400
+
+  # Desde oct-2025 una Function URL publica necesita los DOS permisos (ver rubrica/lambda-contact-form/README.md)
+  UrlInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref Function
+      Action: lambda:InvokeFunctionUrl
+      Principal: '*'
+      FunctionUrlAuthType: NONE
+
+  FunctionInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref Function
+      Action: lambda:InvokeFunction
+      Principal: '*'
+      InvokedViaFunctionUrl: true
+
+Outputs:
+  FunctionUrl:
+    Value: !GetAtt FunctionUrl.FunctionUrl
+  RoleArn:
+    Value: !GetAtt ExecutionRole.Arn

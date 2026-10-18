@@ -2,5 +2,6 @@
   "oldBookingUrl": "https://citas.yani-borrell.com/#/yaniborrell",
   "sgcBookingUrl": "https://sgc.bitdatallc.com/reservar/PENDIENTE_TIPO_CITA_ID",
   "contactEmail": "info@yani-borrell.com",
+  "contactFormUrl": "PENDIENTE_FUNCTION_URL",
   "fixMailtoLink": true
 }
