@@ -1,0 +1,174 @@
+{
+    "ResourceRecordSets": [
+        {
+            "Name": "yani-borrell.com.",
+            "Type": "A",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "3.209.170.230"
+                }
+            ]
+        },
+        {
+            "Name": "yani-borrell.com.",
+            "Type": "AAAA",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "2600:1f18:1bfa:e500:882a:207e:2852:c87c"
+                }
+            ]
+        },
+        {
+            "Name": "yani-borrell.com.",
+            "Type": "CAA",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "0 issue \"letsencrypt.org\""
+                },
+                {
+                    "Value": "0 issuewild \"letsencrypt.org\""
+                }
+            ]
+        },
+        {
+            "Name": "yani-borrell.com.",
+            "Type": "MX",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "50 mx3.zoho.com"
+                },
+                {
+                    "Value": "10 mx.zoho.com"
+                },
+                {
+                    "Value": "20 mx2.zoho.com"
+                }
+            ]
+        },
+        {
+            "Name": "yani-borrell.com.",
+            "Type": "NS",
+            "TTL": 172800,
+            "ResourceRecords": [
+                {
+                    "Value": "ns-215.awsdns-26.com."
+                },
+                {
+                    "Value": "ns-690.awsdns-22.net."
+                },
+                {
+                    "Value": "ns-2038.awsdns-62.co.uk."
+                },
+                {
+                    "Value": "ns-1178.awsdns-19.org."
+                }
+            ]
+        },
+        {
+            "Name": "yani-borrell.com.",
+            "Type": "SOA",
+            "TTL": 900,
+            "ResourceRecords": [
+                {
+                    "Value": "ns-215.awsdns-26.com. awsdns-hostmaster.amazon.com. 1 7200 900 1209600 86400"
+                }
+            ]
+        },
+        {
+            "Name": "yani-borrell.com.",
+            "Type": "TXT",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "\"zoho-verification=zb85777378.zmverify.zoho.com\""
+                },
+                {
+                    "Value": "\"v=spf1 include:one.zoho.com ~all\""
+                }
+            ]
+        },
+        {
+            "Name": "_dmarc.yani-borrell.com.",
+            "Type": "TXT",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "\"v=DMARC1; p=none; rua=mailto:info@bitdatallc.com; ruf=mailto:info@bitdatallc.com; sp=none; adkim=r; aspf=r\""
+                }
+            ]
+        },
+        {
+            "Name": "11205514925._domainkey.yani-borrell.com.",
+            "Type": "TXT",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "\"k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC4fTxdizScBPAMpnAdhqAZvSnq4HN/WJuRiygMA9Vv1bhNmy8MqW4+4R7ynKBLUpgpAb/TDnHl99sGPGVKTXvYEPOGSop/CXPXSjwXauo04CKrQJwNS/Ogq1B7GYIYn71umY7YnHWwAXedO2RPeLuU1+rCF9O9ElHmcA+xoh3w0QIDAQAB\""
+                }
+            ]
+        },
+        {
+            "Name": "zoho._domainkey.yani-borrell.com.",
+            "Type": "TXT",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "\"v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA8QceSuIUWoi28PSH59AVrIdwGW+1QqgwKFzpnv1WoS2HYdPxxWEmU/nZRvE5oFkLlOPJbHGfRJkaqSneHNcwqbb2Xk0hXPOnWZegDt77vmYSH90gvp0Vk4lhR4x+Jxwl/o3X6z1lkYT1m+eW4tDGT7yDplmmqFOS7ZJhrbT0CYaOakWE6HgDkRowZGXuxTE5h\" \"xmv8RXVa3XXccIHDVNgRyESzgyzespxVZQyEeEQdmc4+Z9AvQXOzoRWL+KCWbsSt/oDuOXW+e27nTr4I+AgtXNXsurnxMntcuNl17xIeICjQ+VBIxyuFno7dURrY9pyydKzYVUxS7B+i7fQqR45zwIDAQAB\""
+                }
+            ]
+        },
+        {
+            "Name": "citas.yani-borrell.com.",
+            "Type": "CNAME",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "bookings.cs.zohohost.com"
+                }
+            ]
+        },
+        {
+            "Name": "yani-borrell.com.yani-borrell.com.",
+            "Type": "TXT",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "\"osvrexd.bookings.cs.zohohost.com\""
+                }
+            ]
+        },
+        {
+            "Name": "meeting.yani-borrell.com.",
+            "Type": "CNAME",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "a5ce4de5b1b75963ef08861c1fc069ab.meeting.cs.zohohost.com"
+                }
+            ]
+        },
+        {
+            "Name": "udfdmmp.yani-borrell.com.",
+            "Type": "CNAME",
+            "TTL": 300,
+            "ResourceRecords": [
+                {
+                    "Value": "bookings.cs.zohohost.com"
+                }
+            ]
+        },
+        {
+            "Name": "www.yani-borrell.com.",
+            "Type": "A",
+            "AliasTarget": {
+                "HostedZoneId": "Z077391127VV4H3ONMHKV",
+                "DNSName": "yani-borrell.com.",
+                "EvaluateTargetHealth": true
+            }
+        }
+    ]
+}

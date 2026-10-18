@@ -40,7 +40,10 @@ Resources:
             Statement:
               - Effect: Allow
                 Action: [ses:SendEmail, ses:SendRawEmail]
-                Resource: !Sub arn:aws:ses:${AWS::Region}:${AWS::AccountId}:identity/${SesIdentity}
+                Resource:
+                  - !Sub arn:aws:ses:${AWS::Region}:${AWS::AccountId}:identity/${SesIdentity}
+                  # bitdatallc.com tiene un configuration set por defecto; SES exige permiso sobre el tambien
+                  - !Sub arn:aws:ses:${AWS::Region}:${AWS::AccountId}:configuration-set/*
 
   LogGroup:
     Type: AWS::Logs::LogGroup

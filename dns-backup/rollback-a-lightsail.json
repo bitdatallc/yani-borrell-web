@@ -1,0 +1,6 @@
+{"Comment":"Revertir yani-borrell.com a Lightsail WordPress","Changes":[
+{"Action":"UPSERT","ResourceRecordSet":{"Name":"yani-borrell.com.","Type":"A","TTL":300,"ResourceRecords":[{"Value":"3.209.170.230"}]}},
+{"Action":"CREATE","ResourceRecordSet":{"Name":"yani-borrell.com.","Type":"AAAA","TTL":300,"ResourceRecords":[{"Value":"2600:1f18:1bfa:e500:882a:207e:2852:c87c"}]}},
+{"Action":"DELETE","ResourceRecordSet":{"Name":"www.yani-borrell.com.","Type":"CNAME","TTL":300,"ResourceRecords":[{"Value":"d1jwozytanma8x.cloudfront.net"}]}},
+{"Action":"CREATE","ResourceRecordSet":{"Name":"www.yani-borrell.com.","Type":"A","AliasTarget":{"HostedZoneId":"Z077391127VV4H3ONMHKV","DNSName":"yani-borrell.com.","EvaluateTargetHealth":true}}}
+]}

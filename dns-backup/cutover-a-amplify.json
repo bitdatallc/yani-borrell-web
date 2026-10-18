@@ -1,0 +1,6 @@
+{"Comment":"Migrar yani-borrell.com de Lightsail WordPress a Amplify","Changes":[
+{"Action":"DELETE","ResourceRecordSet":{"Name":"yani-borrell.com.","Type":"AAAA","TTL":300,"ResourceRecords":[{"Value":"2600:1f18:1bfa:e500:882a:207e:2852:c87c"}]}},
+{"Action":"UPSERT","ResourceRecordSet":{"Name":"yani-borrell.com.","Type":"A","AliasTarget":{"HostedZoneId":"Z2FDTNDATAQYW2","DNSName":"d1jwozytanma8x.cloudfront.net.","EvaluateTargetHealth":false}}},
+{"Action":"DELETE","ResourceRecordSet":{"Name":"www.yani-borrell.com.","Type":"A","AliasTarget":{"HostedZoneId":"Z077391127VV4H3ONMHKV","DNSName":"yani-borrell.com.","EvaluateTargetHealth":false}}},
+{"Action":"CREATE","ResourceRecordSet":{"Name":"www.yani-borrell.com.","Type":"CNAME","TTL":300,"ResourceRecords":[{"Value":"d1jwozytanma8x.cloudfront.net"}]}}
+]}
