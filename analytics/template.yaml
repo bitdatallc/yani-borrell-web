@@ -1,0 +1,70 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Analitica sin cookies de yani-borrell.com - CloudWatch RUM con identidad Cognito de invitado
+
+# Cuenta bitdatallc, eu-west-1. Despliegue: pwsh ./analytics/deploy.ps1
+# Coste: CloudWatch RUM cobra por evento recibido (1 USD por cada 100.000), despreciable a este volumen.
+
+Parameters:
+  AppMonitorName:
+    Type: String
+    Default: yani-borrell-web
+
+Resources:
+  IdentityPool:
+    Type: AWS::Cognito::IdentityPool
+    Properties:
+      IdentityPoolName: yani_borrell_web_rum
+      AllowUnauthenticatedIdentities: true
+
+  GuestRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: yani-borrell-web-rum-guest
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal: { Federated: cognito-identity.amazonaws.com }
+            Action: sts:AssumeRoleWithWebIdentity
+            Condition:
+              StringEquals: { 'cognito-identity.amazonaws.com:aud': !Ref IdentityPool }
+              ForAnyValue:StringLike: { 'cognito-identity.amazonaws.com:amr': unauthenticated }
+      Policies:
+        - PolicyName: rum-put-events-only
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: rum:PutRumEvents
+                Resource: !Sub arn:aws:rum:${AWS::Region}:${AWS::AccountId}:appmonitor/${AppMonitorName}
+
+  IdentityPoolRoles:
+    Type: AWS::Cognito::IdentityPoolRoleAttachment
+    Properties:
+      IdentityPoolId: !Ref IdentityPool
+      Roles:
+        unauthenticated: !GetAtt GuestRole.Arn
+
+  AppMonitor:
+    Type: AWS::RUM::AppMonitor
+    Properties:
+      Name: !Ref AppMonitorName
+      DomainList:
+        - yani-borrell.com
+        - www.yani-borrell.com
+      CwLogEnabled: false
+      CustomEvents:
+        Status: ENABLED
+      AppMonitorConfiguration:
+        AllowCookies: false
+        EnableXRay: false
+        SessionSampleRate: 1
+        Telemetries: [performance, errors, http]
+        IdentityPoolId: !Ref IdentityPool
+        GuestRoleArn: !GetAtt GuestRole.Arn
+
+Outputs:
+  AppMonitorId:
+    Value: !GetAtt AppMonitor.Id
+  IdentityPoolId:
+    Value: !Ref IdentityPool

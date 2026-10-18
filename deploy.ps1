@@ -39,10 +39,62 @@ foreach ($k in $redirects.Keys) {
 foreach ($p in '/wp-content/<*>', '/wp-includes/<*>', '/wp-admin/<*>', '/wp-login.php', '/xmlrpc.php', '/feed/<*>') {
     $rules += @{ source = $p; target = '/'; status = '301' }
 }
-$rules += @{ source = '/<*>'; target = '/index.html'; status = '404-200' }
+# Cualquier otra ruta inexistente: página 404 propia (con estado 404)
+$rules += @{ source = '/<*>'; target = '/404.html'; status = '404-200' }
 $rulesFile = Join-Path ([IO.Path]::GetTempPath()) 'yb-amplify-rules.json'
 Set-Content -Path $rulesFile -Value ($rules | ConvertTo-Json -Compress) -Encoding utf8NoBOM
-Invoke-Aws amplify update-app --app-id $AppId --custom-rules "file://$rulesFile" | Out-Null
+
+# Cabeceras: caché larga para ficheros versionados/estables (el HTML sigue sin caché en el navegador)
+# y cabeceras de seguridad. Si se añade un servicio externo, ampliar la CSP.
+$csp = @(
+    "default-src 'self'",
+    "script-src 'self' https://client.rum.us-east-1.amazonaws.com",
+    "style-src 'self' 'unsafe-inline'",
+    "img-src 'self' data:",
+    "font-src 'self'",
+    "connect-src 'self' https://un4bc6qysdii4bvnm43nctzeti0eqhev.lambda-url.eu-west-1.on.aws https://dataplane.rum.eu-west-1.amazonaws.com https://cognito-identity.eu-west-1.amazonaws.com https://sts.eu-west-1.amazonaws.com",
+    "frame-ancestors 'self'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "object-src 'none'",
+    'upgrade-insecure-requests'
+) -join '; '
+$headers = @"
+customHeaders:
+  - pattern: '**'
+    headers:
+      - key: 'Strict-Transport-Security'
+        value: 'max-age=31536000'
+      - key: 'X-Content-Type-Options'
+        value: 'nosniff'
+      - key: 'Referrer-Policy'
+        value: 'strict-origin-when-cross-origin'
+      - key: 'X-Frame-Options'
+        value: 'SAMEORIGIN'
+      - key: 'Permissions-Policy'
+        value: 'camera=(), microphone=(), geolocation=(), payment=()'
+      - key: 'Content-Security-Policy'
+        value: "$csp"
+  - pattern: '/assets/**'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=31536000, immutable'
+  - pattern: '/fonts/**'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=31536000, immutable'
+  - pattern: '/img/**'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=2592000'
+  - pattern: '/favicon.ico'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=2592000'
+"@
+$headersFile = Join-Path ([IO.Path]::GetTempPath()) 'yb-amplify-headers.yml'
+Set-Content -Path $headersFile -Value $headers -Encoding utf8NoBOM
+Invoke-Aws amplify update-app --app-id $AppId --custom-rules "file://$rulesFile" --custom-headers "file://$headersFile" | Out-Null
 
 $branches = (Invoke-Aws amplify list-branches --app-id $AppId).branches.branchName
 if ($branches -notcontains $Branch) {

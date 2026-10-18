@@ -13,6 +13,8 @@ export const translations = {
     'nav.contact': 'Contacto',
     'nav.book': 'Agendar cita',
     'nav.menu': 'Menú',
+    'nav.skip': 'Saltar al contenido',
+    'img.hero': 'Yani Borrell, asesora y experta en extranjería',
 
     'hero.eyebrow': 'Asesora y experta en extranjería',
     'hero.title': 'Soluciones legales para tu <em>proceso migratorio</em>',
@@ -139,6 +141,8 @@ export const translations = {
     'nav.contact': 'Contact',
     'nav.book': 'Book a call',
     'nav.menu': 'Menu',
+    'nav.skip': 'Skip to content',
+    'img.hero': 'Yani Borrell, immigration advisor and expert',
 
     'hero.eyebrow': 'Immigration advisor & expert',
     'hero.title': 'Legal solutions for your <em>immigration journey</em>',

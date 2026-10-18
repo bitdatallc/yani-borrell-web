@@ -1,0 +1,7 @@
+/* Fuentes alojadas en el propio sitio (Google Fonts, subconjunto latino: español + inglés). Licencia OFL. */
+@font-face { font-family: "Playfair Display"; font-style: normal; font-weight: 400 800; font-display: swap; src: url(/fonts/playfair-var.woff2) format("woff2"); }
+@font-face { font-family: "Playfair Display"; font-style: italic; font-weight: 400 700; font-display: swap; src: url(/fonts/playfair-italic-var.woff2) format("woff2"); }
+@font-face { font-family: "Poppins"; font-style: normal; font-weight: 400; font-display: swap; src: url(/fonts/poppins-400.woff2) format("woff2"); }
+@font-face { font-family: "Poppins"; font-style: normal; font-weight: 500; font-display: swap; src: url(/fonts/poppins-500.woff2) format("woff2"); }
+@font-face { font-family: "Poppins"; font-style: normal; font-weight: 600; font-display: swap; src: url(/fonts/poppins-600.woff2) format("woff2"); }
+@font-face { font-family: "Pinyon Script"; font-style: normal; font-weight: 400; font-display: swap; src: url(/fonts/pinyon-script-400.woff2) format("woff2"); }

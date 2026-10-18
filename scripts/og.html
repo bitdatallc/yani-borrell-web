@@ -1,0 +1,43 @@
+<!doctype html>
+<!-- Plantilla de la imagen para redes (Open Graph, 1200x630). No se publica: se captura con un
+     navegador a 1200x630 y se guarda como public/img/og-image.jpg (ver README). -->
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<style>
+  @import "/src/fonts.css";
+  * { box-sizing: border-box; margin: 0; }
+  body { width: 1200px; height: 630px; overflow: hidden; font-family: Poppins, sans-serif;
+    background: radial-gradient(900px 500px at 85% 15%, rgba(233,211,161,.55), transparent 60%), linear-gradient(180deg, #FAF6EF, #F1E8D9); }
+  .wrap { position: relative; height: 100%; display: grid; grid-template-columns: 1.15fr 1fr; align-items: center; padding: 0 80px; }
+  .logo { width: 120px; margin-bottom: 26px; }
+  .eyebrow { font-size: 15px; letter-spacing: .28em; text-transform: uppercase; color: #9C7643; display: flex; align-items: center; gap: 14px; }
+  .eyebrow::before { content: ""; width: 40px; height: 1px; background: #C5A059; }
+  h1 { font-family: "Playfair Display", serif; font-weight: 500; font-size: 84px; line-height: 1; color: #2B2620; margin: 18px 0 6px; }
+  .script { font-family: "Pinyon Script", cursive; font-size: 58px; color: #9C7643; }
+  .en { margin-top: 18px; font-size: 18px; color: #5A5248; }
+  .url { margin-top: 26px; font-size: 18px; font-weight: 600; letter-spacing: .06em; color: #886140; }
+  .visual { position: relative; height: 520px; }
+  .ring { position: absolute; inset: -10px -30px; border: 1.5px solid #C5A059; border-radius: 50%; opacity: .7; }
+  .arch { position: absolute; left: 60px; right: 60px; top: 0; bottom: 0; border-radius: 999px 999px 26px 26px; overflow: hidden;
+    box-shadow: 0 40px 80px -30px rgba(91,64,36,.5); }
+  .arch img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div>
+      <img class="logo" src="/assets-src/img/logo.png" alt="" />
+      <p class="eyebrow">Asesora y experta en extranjería</p>
+      <h1>Yani Borrell</h1>
+      <p class="script">Tu asesora aliada</p>
+      <p class="en">Immigration advisor &amp; expert · Spain</p>
+      <p class="url">yani-borrell.com</p>
+    </div>
+    <div class="visual">
+      <div class="ring"></div>
+      <div class="arch"><img src="/public/img/hero-660.webp" alt="" /></div>
+    </div>
+  </div>
+</body>
+</html>
