@@ -117,6 +117,9 @@ export const translations = {
     'contact.required': 'Este campo es obligatorio.',
     'contact.badEmail': 'Introduce un email válido.',
     'contact.or': 'O si lo prefieres',
+    'contact.phone': 'Teléfono',
+    'contact.waES': 'WhatsApp España',
+    'contact.waUS': 'WhatsApp EE. UU.',
     'contact.follow': 'Sígueme',
 
     'footer.tagline': 'Asesora y experta en extranjería. Tu asesora aliada.',
@@ -240,6 +243,9 @@ export const translations = {
     'contact.required': 'This field is required.',
     'contact.badEmail': 'Please enter a valid email.',
     'contact.or': 'Or if you prefer',
+    'contact.phone': 'Phone',
+    'contact.waES': 'WhatsApp Spain',
+    'contact.waUS': 'WhatsApp USA',
     'contact.follow': 'Follow me',
 
     'footer.tagline': 'Immigration advisor & expert. Your trusted advisor.',
