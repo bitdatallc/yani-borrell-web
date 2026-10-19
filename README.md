@@ -21,6 +21,8 @@ npm run images   # regenera public/img a partir de assets-src/img (solo si cambi
 - Página 404 propia (`404.html`, bilingüe).
 
 ## Despliegue
+**Flujo de trabajo: commit → push a `main` en GitHub → Amplify construye y publica solo** (`amplify.yml`). No desplegar desde local salvo emergencia.
+
 ```
 pwsh ./deploy.ps1                    # producción: yani-borrell.com
 pwsh ./deploy.ps1 -Branch prueba     # rama de prueba: https://prueba.d30vhebtdba9ns.amplifyapp.com
