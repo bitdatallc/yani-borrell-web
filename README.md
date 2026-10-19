@@ -1,6 +1,6 @@
 # yani-borrell.com
 
-Web de Yani Borrell (YB Consultancy), asesora de extranjería. Bilingüe ES/EN, estática, servida desde AWS Amplify (cuenta bitdatallc, app `d30vhebtdba9ns`, eu-west-1).
+Web de Yani Borrell (YB Consultancy), asesora de extranjería. Bilingüe ES/EN, estática, servida desde AWS Amplify (cuenta bitdatallc, app `d2yiu4tmvihnwp`, eu-west-1, conectada a GitHub; la app anterior `d30vhebtdba9ns` queda sin dominio como respaldo).
 
 Sustituye al WordPress/Elementor que corría en Lightsail. La copia estática exacta de ese WordPress se usó como paso intermedio y se eliminó al publicar este diseño; sigue en el historial de git (commits anteriores a "Nuevo diseño en producción").
 
@@ -25,7 +25,7 @@ npm run images   # regenera public/img a partir de assets-src/img (solo si cambi
 
 ```
 pwsh ./deploy.ps1                    # producción: yani-borrell.com
-pwsh ./deploy.ps1 -Branch prueba     # rama de prueba: https://prueba.d30vhebtdba9ns.amplifyapp.com
+# (deploy.ps1 ya no se usa en el flujo normal: la app nueva construye desde GitHub; apunta a la app anterior d30vhebtdba9ns)
 ```
 El script hace el build y configura en la app de Amplify:
 - Redirecciones 301 de las URLs del WordPress antiguo a las secciones nuevas y 404 propia.

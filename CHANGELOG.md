@@ -12,7 +12,7 @@ Registro de cambios de la web de Yani Borrell (YB Consultancy). Reconstruido a p
 |---|---|
 | Sitio | Web estática bilingüe ES/EN, sustituye al WordPress/Elementor que corría en Lightsail |
 | Stack | Vite 6, JavaScript sin framework, GSAP + Lenis para animación (carga diferida) |
-| Hosting | AWS Amplify, app `d30vhebtdba9ns`, eu-west-1 (cuenta bitdatallc) |
+| Hosting | AWS Amplify, app `d2yiu4tmvihnwp` conectada a GitHub (`bitdatallc/yani-borrell-web`, rama `main`), eu-west-1, cuenta bitdatallc |
 | Formulario | Lambda (Function URL) + SES, patrón `rubrica/lambda-contact-form` |
 | Citas | Reserva pública de SGC (`BOOKING_URL` en `src/svc-markup.js`) |
 | DNS | Route 53, zona `Z077391127VV4H3ONMHKV`; correo (Zoho) independiente de la web |
@@ -25,6 +25,8 @@ Registro de cambios de la web de Yani Borrell (YB Consultancy). Reconstruido a p
 - Nueva página `/privacy-policy/` y `/en/privacy-policy/` (`privacy-policy/index.html`, `src/privacy-content.js`), con enlace en los pies de página y en el sitemap.
 - Incluye cláusula de mensajería instantánea (WhatsApp y similares): inicio, comunicaciones de servicio, baja, proveedor de la app, documentos sensibles y terceros.
 - `terms.js`, `prerender.mjs` y `terms-content.js` pasan a servir ambas páginas legales.
+- Nueva app de Amplify `d2yiu4tmvihnwp` conectada a GitHub (`amplify.yml`); se le copiaron las 27 redirecciones y las cabeceras de seguridad/caché, y se le transfirió `yani-borrell.com` y `www`. Desde ahora: commit → push a `main` → Amplify construye y publica.
+- La app anterior `d30vhebtdba9ns` queda sin dominio como respaldo (tiene una rama `staging` fallida sin uso).
 
 ## 2026-10-18
 
