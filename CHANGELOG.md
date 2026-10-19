@@ -26,7 +26,7 @@ Registro de cambios de la web de Yani Borrell (YB Consultancy). Reconstruido a p
 - Incluye cláusula de mensajería instantánea (WhatsApp y similares): inicio, comunicaciones de servicio, baja, proveedor de la app, documentos sensibles y terceros.
 - `terms.js`, `prerender.mjs` y `terms-content.js` pasan a servir ambas páginas legales.
 - Nueva app de Amplify `d2yiu4tmvihnwp` conectada a GitHub (`amplify.yml`); se le copiaron las 27 redirecciones y las cabeceras de seguridad/caché, y se le transfirió `yani-borrell.com` y `www`. Desde ahora: commit → push a `main` → Amplify construye y publica.
-- La app anterior `d30vhebtdba9ns` queda sin dominio como respaldo (tiene una rama `staging` fallida sin uso).
+- App anterior `d30vhebtdba9ns` eliminada de AWS, junto con `deploy.ps1`, `.amplify-app-id` y `dns-backup/cutover-a-amplify.json`. Las redirecciones y cabeceras, que estaban definidas en `deploy.ps1`, se conservan como referencia en `amplify-config/`.
 
 ## 2026-10-18
 

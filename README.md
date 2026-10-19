@@ -1,6 +1,6 @@
 # yani-borrell.com
 
-Web de Yani Borrell (YB Consultancy), asesora de extranjería. Bilingüe ES/EN, estática, servida desde AWS Amplify (cuenta bitdatallc, app `d2yiu4tmvihnwp`, eu-west-1, conectada a GitHub; la app anterior `d30vhebtdba9ns` queda sin dominio como respaldo).
+Web de Yani Borrell (YB Consultancy), asesora de extranjería. Bilingüe ES/EN, estática, servida desde AWS Amplify (cuenta bitdatallc, app `d2yiu4tmvihnwp`, eu-west-1, conectada a GitHub).
 
 Sustituye al WordPress/Elementor que corría en Lightsail. La copia estática exacta de ese WordPress se usó como paso intermedio y se eliminó al publicar este diseño; sigue en el historial de git (commits anteriores a "Nuevo diseño en producción").
 
@@ -21,15 +21,11 @@ npm run images   # regenera public/img a partir de assets-src/img (solo si cambi
 - Página 404 propia (`404.html`, bilingüe).
 
 ## Despliegue
-**Flujo de trabajo: commit → push a `main` en GitHub → Amplify construye y publica solo** (`amplify.yml`). No desplegar desde local salvo emergencia.
+**Flujo de trabajo: commit → push a `main` en GitHub → Amplify construye y publica solo** (`amplify.yml`). Amplify (app `d2yiu4tmvihnwp`, eu-west-1) hace `npm ci` y `npm run build` y publica `dist/`. No hay despliegue desde local.
 
-```
-pwsh ./deploy.ps1                    # producción: yani-borrell.com
-# (deploy.ps1 ya no se usa en el flujo normal: la app nueva construye desde GitHub; apunta a la app anterior d30vhebtdba9ns)
-```
-El script hace el build y configura en la app de Amplify:
+La app de Amplify guarda además (no están en el repo como fuente: `amplify-config/` es una copia de referencia):
 - Redirecciones 301 de las URLs del WordPress antiguo a las secciones nuevas y 404 propia.
-- Cabeceras: caché de 1 año para `/assets/*` y `/fonts/*`, 30 días para `/img/*`; HSTS, `nosniff`, `Referrer-Policy`, `X-Frame-Options`, `Permissions-Policy` y CSP. **Si se añade un servicio externo (script, fuente, API), ampliar la CSP en `deploy.ps1`.**
+- Cabeceras: caché de 1 año para `/assets/*` y `/fonts/*`, 30 días para `/img/*`; HSTS, `nosniff`, `Referrer-Policy`, `X-Frame-Options`, `Permissions-Policy` y CSP. **Si se añade un servicio externo (script, fuente, API), ampliar la CSP en la app de Amplify (consola → Hosting → Custom headers, o `aws amplify update-app --custom-headers`, que exige formato YAML) y actualizar `amplify-config/headers.json`.**
 
 ## Formulario de contacto
 `contact-form/`: CloudFormation con Lambda (Function URL) + SES en la cuenta de bitdatallc, mismo patrón que `rubrica/lambda-contact-form`. Envía desde `notificaciones@bitdatallc.com` a `info@yani-borrell.com` (Zoho) con Reply-To del visitante. Anti-spam: honeypot + rechazo de envíos a <3 s de cargar.

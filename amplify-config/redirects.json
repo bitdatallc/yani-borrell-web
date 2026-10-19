@@ -1,0 +1,137 @@
+[
+    {
+        "source": "/about-me",
+        "target": "/#sobre-mi",
+        "status": "301"
+    },
+    {
+        "source": "/about-me/<*>",
+        "target": "/#sobre-mi",
+        "status": "301"
+    },
+    {
+        "source": "/services",
+        "target": "/#servicios",
+        "status": "301"
+    },
+    {
+        "source": "/services/<*>",
+        "target": "/#servicios",
+        "status": "301"
+    },
+    {
+        "source": "/contact",
+        "target": "/#contacto",
+        "status": "301"
+    },
+    {
+        "source": "/contact/<*>",
+        "target": "/#contacto",
+        "status": "301"
+    },
+    {
+        "source": "/asesoria-migratoria",
+        "target": "/#servicios",
+        "status": "301"
+    },
+    {
+        "source": "/asesoria-migratoria/<*>",
+        "target": "/#servicios",
+        "status": "301"
+    },
+    {
+        "source": "/traducciones-y-apostillas",
+        "target": "/#servicios",
+        "status": "301"
+    },
+    {
+        "source": "/traducciones-y-apostillas/<*>",
+        "target": "/#servicios",
+        "status": "301"
+    },
+    {
+        "source": "/preparacion-de-documentos",
+        "target": "/#servicios",
+        "status": "301"
+    },
+    {
+        "source": "/preparacion-de-documentos/<*>",
+        "target": "/#servicios",
+        "status": "301"
+    },
+    {
+        "source": "/homologacion-de-estudios",
+        "target": "/#servicios",
+        "status": "301"
+    },
+    {
+        "source": "/homologacion-de-estudios/<*>",
+        "target": "/#servicios",
+        "status": "301"
+    },
+    {
+        "source": "/elementor-page-313",
+        "target": "/#servicios",
+        "status": "301"
+    },
+    {
+        "source": "/elementor-page-313/<*>",
+        "target": "/#servicios",
+        "status": "301"
+    },
+    {
+        "source": "/elementor-page-294",
+        "target": "/#servicios",
+        "status": "301"
+    },
+    {
+        "source": "/elementor-page-294/<*>",
+        "target": "/#servicios",
+        "status": "301"
+    },
+    {
+        "source": "/sample-page",
+        "target": "/",
+        "status": "301"
+    },
+    {
+        "source": "/sample-page/<*>",
+        "target": "/",
+        "status": "301"
+    },
+    {
+        "source": "/wp-content/<*>",
+        "target": "/",
+        "status": "301"
+    },
+    {
+        "source": "/wp-includes/<*>",
+        "target": "/",
+        "status": "301"
+    },
+    {
+        "source": "/wp-admin/<*>",
+        "target": "/",
+        "status": "301"
+    },
+    {
+        "source": "/wp-login.php",
+        "target": "/",
+        "status": "301"
+    },
+    {
+        "source": "/xmlrpc.php",
+        "target": "/",
+        "status": "301"
+    },
+    {
+        "source": "/feed/<*>",
+        "target": "/",
+        "status": "301"
+    },
+    {
+        "source": "/<*>",
+        "target": "/404.html",
+        "status": "404-200"
+    }
+]
