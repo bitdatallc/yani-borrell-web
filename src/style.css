@@ -330,7 +330,10 @@ em { font-style: italic; color: var(--gold-deep); }
 .footer__heading { font-family: var(--f-display); font-size: 18px; color: var(--gold-light); margin-bottom: 18px; font-weight: 500; }
 .footer__grid a { display: block; margin-bottom: 10px; transition: color .3s; }
 .footer__grid a:hover { color: var(--gold-light); }
-.footer__bottom { padding-top: 26px; font-size: 13px; color: #A99E90; }
+.footer__bottom { padding-top: 26px; font-size: 13px; color: #A99E90; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+.footer__legal { display: flex; flex-wrap: wrap; gap: 4px 20px; }
+.footer__legal a { transition: color .3s; }
+.footer__legal a:hover { color: var(--gold-light); }
 
 /* ---------- Términos y condiciones ---------- */
 .terms { padding: calc(var(--header-h) + 70px) 0 110px; background: linear-gradient(180deg, var(--sand), var(--ivory) 420px); }

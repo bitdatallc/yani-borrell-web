@@ -128,6 +128,7 @@ export const translations = {
     'footer.nav': 'Navegación',
     'footer.legal': 'Legal',
     'footer.terms': 'Términos y condiciones',
+    'footer.privacy': 'Política de privacidad',
     'footer.rights': 'Todos los derechos reservados.',
   },
 
@@ -256,6 +257,7 @@ export const translations = {
     'footer.nav': 'Navigation',
     'footer.legal': 'Legal',
     'footer.terms': 'Terms and conditions',
+    'footer.privacy': 'Privacy policy',
     'footer.rights': 'All rights reserved.',
   },
 };

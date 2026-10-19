@@ -42,8 +42,13 @@ export const TERMS = {
   },
 };
 
-export function termsListMarkup(lang) {
-  return TERMS[lang].sections
+// Lista numerada de secciones [título, texto]; la comparten Términos y Política de privacidad
+export function legalListMarkup(sections) {
+  return sections
     .map(([h, p], i) => `<li><h2><span>${String(i + 1).padStart(2, '0')}</span>${h}</h2><p>${p}</p></li>`)
     .join('');
+}
+
+export function termsListMarkup(lang) {
+  return legalListMarkup(TERMS[lang].sections);
 }

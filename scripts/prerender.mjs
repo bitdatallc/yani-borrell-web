@@ -5,12 +5,15 @@
 //   dist/en/index.html                    -> /en/                    (en)
 //   dist/terms-and-conditions/index.html  -> /terms-and-conditions/  (es)
 //   dist/en/terms-and-conditions/...      -> /en/terms-and-conditions/ (en)
+//   dist/privacy-policy/index.html        -> /privacy-policy/        (es)
+//   dist/en/privacy-policy/index.html     -> /en/privacy-policy/     (en)
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseHTML } from 'linkedom';
 import { translations } from '../src/i18n.js';
 import { TERMS, termsListMarkup } from '../src/terms-content.js';
+import { PRIVACY, privacyListMarkup } from '../src/privacy-content.js';
 import { servicesMarkup, BOOKING_URL, SVC_IDS } from '../src/svc-markup.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -25,9 +28,13 @@ const SOCIAL = [
   'https://www.tiktok.com/@yani_borrell',
 ];
 
+const LEGAL = { terms: TERMS, privacy: PRIVACY };
+const LIST = { terms: termsListMarkup, privacy: privacyListMarkup };
+
 const PAGES = [
   { kind: 'home', template: 'index.html', paths: { es: '/', en: '/en/' } },
   { kind: 'terms', template: 'terms-and-conditions/index.html', paths: { es: '/terms-and-conditions/', en: '/en/terms-and-conditions/' } },
+  { kind: 'privacy', template: 'privacy-policy/index.html', paths: { es: '/privacy-policy/', en: '/en/privacy-policy/' } },
 ];
 
 // La carpeta vive en OneDrive, que bloquea un momento los ficheros recién escritos (EBUSY): reintentar
@@ -101,7 +108,7 @@ function jsonLd(lang, page) {
   };
   const webpage = {
     '@type': 'WebPage', '@id': `${url}#webpage`, url, inLanguage: lang,
-    name: page.kind === 'terms' ? TERMS[lang].metaTitle : t['meta.title'],
+    name: LEGAL[page.kind]?.[lang].metaTitle ?? t['meta.title'],
     isPartOf: { '@id': `${SITE}/#website` }, about: { '@id': `${SITE}/#business` },
   };
   return { '@context': 'https://schema.org', '@graph': page.kind === 'home' ? [business, website, webpage] : [webpage] };
@@ -158,10 +165,10 @@ async function renderPage(page, lang) {
     description = t['meta.description'];
   } else {
     fillI18n(document, t);
-    const tt = TERMS[lang];
+    const tt = LEGAL[page.kind][lang];
     document.querySelector('.terms__title').textContent = tt.title;
     document.querySelector('.terms__intro').textContent = tt.intro;
-    document.querySelector('.terms__list').innerHTML = termsListMarkup(lang);
+    document.querySelector('.terms__list').innerHTML = LIST[page.kind](lang);
     document.querySelector('.terms__outro').textContent = tt.outro;
     document.querySelector('.terms__back span').textContent = tt.back;
     title = tt.metaTitle;
@@ -179,6 +186,7 @@ async function renderPage(page, lang) {
   if (lang === 'en') {
     document.querySelectorAll('.js-home').forEach((a) => a.setAttribute('href', '/en/'));
     document.querySelectorAll('.js-terms').forEach((a) => a.setAttribute('href', '/en/terms-and-conditions/'));
+    document.querySelectorAll('.js-privacy').forEach((a) => a.setAttribute('href', '/en/privacy-policy/'));
     document.querySelectorAll('.lang, .nav').forEach((n) => n.setAttribute('aria-label', n.classList.contains('lang') ? 'Language / Idioma' : 'Main'));
   }
   document.querySelectorAll('.js-year').forEach((el) => { el.textContent = YEAR; });

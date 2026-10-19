@@ -1,0 +1,57 @@
+<!doctype html>
+<!-- Plantilla: scripts/prerender.mjs genera /privacy-policy/ (es) y /en/privacy-policy/ (en). -->
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Política de privacidad · Yani Borrell</title>
+  <meta name="description" content="" />
+  <meta name="theme-color" content="#FAF6EF" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32 48x48" />
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+  <link rel="preload" href="/fonts/playfair-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin />
+  <!-- SEO-HEAD -->
+</head>
+<body class="page-terms" data-legal="privacy">
+  <a class="skip-link" href="#main" data-i18n="nav.skip">Saltar al contenido</a>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="/" class="header__logo js-home" aria-label="Yani Borrell">
+        <img src="/img/logo-112.webp" alt="YB Consultancy" width="56" height="51" />
+      </a>
+      <div class="header__actions">
+        <nav class="lang" aria-label="Idioma / Language">
+          <a href="/privacy-policy/" data-lang="es" hreflang="es" lang="es">ES</a>
+          <span class="lang__pill" aria-hidden="true"></span>
+          <a href="/en/privacy-policy/" data-lang="en" hreflang="en" lang="en">EN</a>
+        </nav>
+        <a class="btn btn--gold btn--sm" href="https://sgc.bitdatallc.com/reservar/6aaa8ca371b598e5ea90eb47" target="_blank" rel="noopener" data-track="book" data-i18n="nav.book">Agendar cita</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="terms" id="main">
+    <div class="container terms__inner">
+      <p class="eyebrow" data-i18n="footer.legal">Legal</p>
+      <h1 class="terms__title section__title">Política de privacidad</h1>
+      <p class="terms__intro"></p>
+      <ol class="terms__list"></ol>
+      <p class="terms__outro"></p>
+      <a class="btn btn--ghost terms__back js-home" href="/">
+        <svg viewBox="0 0 24 24" aria-hidden="true" style="transform:rotate(180deg)"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        <span>Volver al inicio</span>
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__bottom">
+      <span>© <span class="js-year">2026</span> YB Consultancy · Yani Borrell. <span data-i18n="footer.rights"></span></span>
+      <span class="footer__legal"><a href="/terms-and-conditions/" class="js-terms" data-i18n="footer.terms"></a><a href="/privacy-policy/" class="js-privacy" data-i18n="footer.privacy"></a></span>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/terms.js"></script>
+</body>
+</html>

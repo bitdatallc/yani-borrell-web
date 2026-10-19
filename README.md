@@ -13,8 +13,8 @@ npm run images   # regenera public/img a partir de assets-src/img (solo si cambi
 ```
 
 - Vite 6, JavaScript sin framework.
-- `index.html`, `terms-and-conditions/index.html` son **plantillas**: en el build, `scripts/prerender.mjs` genera `/` y `/terms-and-conditions/` (es) y `/en/`, `/en/terms-and-conditions/` (en) con todo el texto en el HTML, `canonical`/`hreflang`, Open Graph, JSON-LD (`ProfessionalService`), y además `sitemap.xml` y `robots.txt`. El CSS va dentro del HTML. En dev las plantillas se rellenan en el navegador.
-- Textos: `src/i18n.js` (portada), `src/terms-content.js` (términos), tarjetas de servicios en `src/svc-markup.js`.
+- `index.html`, `terms-and-conditions/index.html` y `privacy-policy/index.html` son **plantillas**: en el build, `scripts/prerender.mjs` genera `/`, `/terms-and-conditions/` y `/privacy-policy/` (es) y sus equivalentes bajo `/en/` (en) con todo el texto en el HTML, `canonical`/`hreflang`, Open Graph, JSON-LD (`ProfessionalService`), y además `sitemap.xml` y `robots.txt`. El CSS va dentro del HTML. En dev las plantillas se rellenan en el navegador.
+- Textos: `src/i18n.js` (portada), `src/terms-content.js` (términos), política de privacidad (incluye la cláusula de mensajería instantánea) en `src/privacy-content.js`, tarjetas de servicios en `src/svc-markup.js`. **Si cambian los servicios externos que tratan datos (analítica, correo, reservas, WhatsApp) o los datos del responsable, actualizar la política.**
 - `src/main.js` es ligero (idioma, cabecera, menú, formulario, medición). Las animaciones (GSAP: ScrollTrigger, SplitText, MotionPath + Lenis) están en `src/motion.js` y se cargan con `import()` cuando el navegador queda libre tras el primer pintado; la entrada de la portada es CSS puro. Respeta `prefers-reduced-motion`.
 - Fuentes alojadas en `public/fonts` (Playfair Display, Poppins, Pinyon Script; subconjunto latino, OFL).
 - Imágenes: originales en `assets-src/img`, versiones WebP por tamaño en `public/img` (`scripts/images.mjs`). `public/img/og-image.jpg` (1200×630) se captura de `scripts/og.html` con un navegador a 1200×630 servido por `npm run dev`.
